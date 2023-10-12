@@ -65,7 +65,8 @@
           My Cart (<%= cart.size %>) <% end %>
         </li>
         <% if current_user %>
-          Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout', method: :destroy, class: "nav-link"%>
+          Signed in as <%= current_user.e
+          mail %> | <%= link_to "Logout", '/logout', method: :destroy, class: "nav-link"%>
         <% else %>
           <%= link_to 'Login', '/login', class: "nav-link" %> | <%= link_to 'Signup', '/signup', class: "nav-link" %>
         <% end %>

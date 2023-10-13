@@ -110,4 +110,25 @@ RSpec.describe User, type: :model do
       expect(user.errors.full_messages).to include("Password is too short (minimum is 8 characters)")
     end
   end
+
+  describe 'authenticate_with_credentials' do
+    it 'should authenticate with existing user' do
+      User.create(
+        first_name:'ABC',
+        last_name:'DEF',
+        email: 'test@example.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+
+      # Attempt to authenticate with the same credentials
+      authenticated_user = User.authenticate_with_credentials(' TEST@example.com ', 'password')
+      
+      # Debugging output
+      puts "Email: test@example.com"
+      puts "User: #{authenticated_user.inspect}"
+
+      expect(authenticated_user).to_not be_nil
+    end
+  end
 end

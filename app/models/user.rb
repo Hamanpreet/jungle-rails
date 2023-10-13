@@ -15,4 +15,18 @@ class User < ApplicationRecord
     self.email = email.downcase if email.present?
   end
 
+  def self.authenticate_with_credentials(email, password)
+    # Remove leading and trailing spaces from the email
+    email1 = email.strip
+
+    # Convert the email to lowercase for case-insensitive matching
+    email2 = email1.downcase
+    puts "Here is #{email2}"
+    user = User.find_by_email(email2)
+    if user && user.authenticate(password)
+      return user
+    else
+      nil
+    end
+  end
 end
